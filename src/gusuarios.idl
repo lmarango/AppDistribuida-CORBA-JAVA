@@ -1,0 +1,40 @@
+module sop_corba{
+    interface AdmCllbckInt{
+        void notificar(in string nombreCompleto, in long id );
+    };
+    interface FapCllbckInt{
+        void informarIngreso(in string nombreCompleto, in long id);
+    };
+    struct personalDTO{
+        string tipo_id;
+        long id;
+        string nombreCompleto;
+        string ocupacion;
+        string usuario;
+        string clave;
+    }; 
+    struct usuarioDTO{
+        long id;
+        string nombreCompleto;
+        string facultad;
+        string tipo;
+        string fechaIngreso;
+        string patologia;
+        string usuario;
+        string clave;
+    };
+    struct credencialDTO{
+        string usuario;
+        string clave;
+        long id;
+    };
+    interface GestionPersonalInt{
+        void registrarPersonal(in personalDTO objPersonal, out boolean res);
+        boolean consultarPersonal(in long id, out personalDTO objPersonal);
+        void registrarUsuario(in usuarioDTO objUsuario, out boolean res);
+        boolean consultarUsuario(in long id, out usuarioDTO objUsuario);
+        boolean abrirSesion(in credencialDTO objCredencial);
+        void registrarCallback(in AdmCllbckInt objCllbck);
+        void registrarCallbackFap(in FapCllbckInt objCllbck);
+    };
+};

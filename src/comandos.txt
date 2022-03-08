@@ -1,0 +1,26 @@
+compilar idl
+    idlj -fall -pkgPrefix sop_corba s_gestion_usuarios gusuarios.idl
+    idlj -fall -pkgPrefix sop_corba s_seguimiento_usuarios gpacientes.idl
+
+compilar servidor seguimiento de usuarios
+    javac -d ../bin s_seguimiento_usuarios/sop_corba/*.java
+    javac -d ../bin s_seguimiento_usuarios/servidor/*.java
+
+compilar Servidor gestion de usuarios
+    javac -d ../bin s_gestion_usuarios/sop_corba/*.java
+    javac -d ../bin s_gestion_usuarios/servidor/*.java
+
+compilar el cliente
+    javac -d ../bin cliente/*.java
+
+Lanzar el orbd:
+    orbd –ORBInitialHost localhost -ORBInitialPort 2020
+
+Lanzar servidor 2:
+    java s_seguimiento_usuarios.servidor.ServidorDeObjetos –ORBInitialHost localhost -ORBInitialPort 2020
+
+Lanzar Servidor 1:
+    java s_gestion_usuarios.servidor.ServidorDeObjetos –ORBInitialHost localhost -ORBInitialPort 2020
+
+Lanzar cliente:
+    java cliente.ClienteDeObjetos –ORBInitialHost localhost -ORBInitialPort 2020

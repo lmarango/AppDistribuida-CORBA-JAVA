@@ -1,0 +1,50 @@
+module sop_corba{
+    struct AsistenciaDTO{
+        long idPaciente;
+        string fechaAsistencia;
+        string observacion;
+    };
+    typedef sequence<AsistenciaDTO> ArrayAsistencia;
+    struct EjercicioDTO{
+        string nombreEjercicio;
+        long repeticiones;
+        long peso;
+    };
+    typedef sequence<EjercicioDTO> ArrayEjercicios;
+    struct ProgramaDTO{
+        long dia;
+        ArrayEjercicios listaEjercicios;  
+    };
+    typedef sequence<ProgramaDTO> ArrayPrograma;
+    struct ProgramaFisicoDTO{
+        long idPaciente;
+        string fechaInicio;
+        ArrayPrograma listaProgramaSemana;
+    };
+    struct ValoracionDTO{
+        long idPaciente;
+        string fechaValoracion;
+        long fecCardiacaReposo;
+        long fecCardiacaActiva;
+        long estatura;
+        long brazo;
+        long pierna;
+        long pecho;
+        long cintura;
+        string estado;
+    };
+    struct notificacionDTO{
+        string nombreCompleto;
+        string ocupacion;
+    };
+    interface GestionPacientesInt{
+        void registrarValoracion(in ValoracionDTO objValoracion, out boolean res);
+        boolean consultarValoracion(in long id, out ValoracionDTO objValoracion);
+        void registrarProgramaFisico(in ProgramaFisicoDTO objProgramaFisico, out boolean res);
+        boolean consultarProgramaFisico(in long id, out ProgramaFisicoDTO objProgramaFisico);
+        void registrarAsistencia(in AsistenciaDTO objAsistencia, out boolean res);
+        boolean consultarAsistencia(in long id, out ArrayAsistencia lstAsistencia);
+        void contarFaltas(in long id, out long numFaltas);
+        void enviarNotificacion(in notificacionDTO objNotificacion);
+    };
+};
