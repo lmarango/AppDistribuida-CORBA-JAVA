@@ -66,7 +66,7 @@ public class GestionPacientesImpl extends GestionPacientesIntPOA{
 
     @Override
     public boolean consultarProgramaFisico(int id, ProgramaFisicoDTOHolder objProgramaFisico) {
-        System.out.println("***Entrando a consultarValoracion()...");
+        System.out.println("***Entrando a consultarProgramaFísico()...");
         ProgramaDTO[] varListaProgramasDefault = {};
         ProgramaFisicoDTO varObjProgramaFisicoDTO = new ProgramaFisicoDTO(0, "", varListaProgramasDefault);
         objProgramaFisico.value = varObjProgramaFisicoDTO;
